@@ -147,7 +147,7 @@ export function getDomainFromLocale (localeCode, req, { normalizedLocales }) {
  */
 export function getLocaleDomain (locales, req) {
   /** @type {string | undefined} */
-  let host
+  let host, path
 
   if (process.client) {
     host = window.location.host
@@ -156,10 +156,25 @@ export function getLocaleDomain (locales, req) {
     host = Array.isArray(detectedHost) ? detectedHost[0] : detectedHost
   }
 
-  if (host) {
-    const matchingLocale = locales.find(l => l.domain === host)
-    if (matchingLocale) {
-      return matchingLocale.code
+  if (process.client) {
+    path = window.location.pathname
+  } else if (req) {
+    path = req.url
+  }
+
+  if (host && path) {
+    const matchingLocale = locales.filter(l => l.domain === host)
+    if (matchingLocale.length === 1) {
+      return matchingLocale[0].code
+    }
+
+    if (matchingLocale.length > 1) {
+      const matcingLocaleWithPrefix = locales.find(l => path.match(new RegExp(`^${l.prefix}`)))
+      if (matcingLocaleWithPrefix) {
+        return matcingLocaleWithPrefix.code
+      }
+
+      return matchingLocale[0].code
     }
   }
 

@@ -19,7 +19,8 @@ export function makeRoutes (baseRoutes, {
   defaultLocaleRouteNameSuffix,
   differentDomains,
   includeUprefixedFallback,
-  localeCodes,
+  // localeCodes,
+  locales,
   pages,
   pagesDir,
   parsePages,
@@ -37,9 +38,10 @@ export function makeRoutes (baseRoutes, {
    * @param {boolean} [isExtraRouteTree=false]
    * @return {NuxtRouteConfig | NuxtRouteConfig[]}
    */
-  const buildLocalizedRoutes = (route, allowedLocaleCodes, isChild = false, isExtraRouteTree = false) => {
+  const buildLocalizedRoutes = (route, locales, isChild = false, isExtraRouteTree = false) => {
     /** @type {NuxtRouteConfig[]} */
     const routes = []
+    const allowedLocaleCodes = locales.map(val => val.code)
 
     // Skip route if it is only a redirect without a component.
     if (route.redirect && !route.component) {
@@ -58,7 +60,7 @@ export function makeRoutes (baseRoutes, {
     // Component-specific options
     const componentOptions = {
       // @ts-ignore
-      locales: localeCodes,
+      locales,
       ...pageOptions,
       ...{ locales: allowedLocaleCodes }
     }
@@ -78,6 +80,7 @@ export function makeRoutes (baseRoutes, {
     // Generate routes for component's supported locales
     for (let i = 0, length1 = componentOptions.locales.length; i < length1; i++) {
       const locale = componentOptions.locales[i]
+      const specialPrefix = locales.find(val => val.code === locale).prefix
       const { name } = route
       let { path } = route
       const localizedRoute = { ...route }
@@ -145,6 +148,10 @@ export function makeRoutes (baseRoutes, {
         path = `/${locale}${path}`
       }
 
+      if (specialPrefix) {
+        path = `${specialPrefix}${path}`
+      }
+
       // - Follow Nuxt and add or remove trailing slashes depending on "router.trailingSlash`
       // - If "router.trailingSlash" is not specified then default to no trailing slash (like Nuxt)
       // - Children with relative paths must not start with slash so don't append if path is empty.
@@ -168,7 +175,7 @@ export function makeRoutes (baseRoutes, {
 
   for (let i = 0, length1 = baseRoutes.length; i < length1; i++) {
     const route = baseRoutes[i]
-    localizedRoutes = localizedRoutes.concat(buildLocalizedRoutes(route, localeCodes))
+    localizedRoutes = localizedRoutes.concat(buildLocalizedRoutes(route, locales))
   }
 
   try {
