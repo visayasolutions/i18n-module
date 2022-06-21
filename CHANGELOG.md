@@ -1,3 +1,46 @@
+### [6.28.1](https://github.com/nuxt-community/i18n-module/compare/v6.28.0...v6.28.1) (2021-08-03)
+
+
+### Bug Fixes
+
+* error on loading when using nuxt-vite ([#1251](https://github.com/nuxt-community/i18n-module/issues/1251)) ([cb67e05](https://github.com/nuxt-community/i18n-module/commit/cb67e05c80963752e515893e8bf28466a43ee69d))
+
+## [6.28.0](https://github.com/nuxt-community/i18n-module/compare/v6.27.3...v6.28.0) (2021-07-22)
+
+
+### Features
+
+* allow disabling route sorting ([#1241](https://github.com/nuxt-community/i18n-module/issues/1241)) ([8a6a056](https://github.com/nuxt-community/i18n-module/commit/8a6a05642819ece16ca9e38211449313254cd500))
+
+
+### Bug Fixes
+
+* custom routes with optional params adjusted incorrectly ([#1243](https://github.com/nuxt-community/i18n-module/issues/1243)) ([203f3db](https://github.com/nuxt-community/i18n-module/commit/203f3dbee2618ba1c598d53db00564f73e848def))
+* don't skip the cookie if no locale is detected in the route ([#1235](https://github.com/nuxt-community/i18n-module/issues/1235)) ([6c9b48f](https://github.com/nuxt-community/i18n-module/commit/6c9b48fcd4a4421c118574e68e4b67a13180d502))
+
+### [6.27.3](https://github.com/nuxt-community/i18n-module/compare/v6.27.2...v6.27.3) (2021-07-09)
+
+
+### Bug Fixes
+
+* redirect without appending extra chars ([#1214](https://github.com/nuxt-community/i18n-module/issues/1214)) ([0527d63](https://github.com/nuxt-community/i18n-module/commit/0527d63b99cf30fbe71bd62ded731de3a86798fc))
+
+### [6.27.2](https://github.com/nuxt-community/i18n-module/compare/v6.27.1...v6.27.2) (2021-06-23)
+
+
+### Bug Fixes
+
+* ensure localeProperties is reactive (on locale change) ([#1208](https://github.com/nuxt-community/i18n-module/issues/1208)) ([d2dd400](https://github.com/nuxt-community/i18n-module/commit/d2dd4006e82734bc037cf19ef28d6e91bf1c0c83))
+* **types:** fix compatibility issue with typescript 4.3.x+ ([#1205](https://github.com/nuxt-community/i18n-module/issues/1205)) ([acc1145](https://github.com/nuxt-community/i18n-module/commit/acc11452141287f5b3b84fb06ee92678fcb1279d))
+
+### [6.27.1](https://github.com/nuxt-community/i18n-module/compare/v6.27.0...v6.27.1) (2021-06-15)
+
+
+### Bug Fixes
+
+* **types:** fix "lazy" type in deprecated types ([#1190](https://github.com/nuxt-community/i18n-module/issues/1190)) ([482317b](https://github.com/nuxt-community/i18n-module/commit/482317b4576b42204560ad0efd9cf9ac92940f90))
+* handle protocol in the domain key for different domains ([#1169](https://github.com/nuxt-community/i18n-module/issues/1169)) ([45b2b82](https://github.com/nuxt-community/i18n-module/commit/45b2b82f64152c8173e6b63ab0b4154e097a34c4))
+
 ## [6.27.0](https://github.com/nuxt-community/i18n-module/compare/v6.26.0...v6.27.0) (2021-05-07)
 
 
